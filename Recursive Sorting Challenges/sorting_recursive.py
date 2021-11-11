@@ -30,27 +30,25 @@ def merge_sort(items):
     return merge(left, right)
 
 
-def partition(items, low, high):
-    """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
-    that range, moving pivot into index `p`, items less than pivot into range
-    `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Choose a pivot any way and document your method in docstring above
-    # TODO: Loop through all items in range [low...high]
-    # TODO: Move items less than pivot into front of range [low...p-1]
-    # TODO: Move items greater than pivot into back of range [p+1...high]
-    # TODO: Move pivot item into final position [p] and return index p
-
-
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    TODO: Best case running time: ??? Why and under what conditions?
-    TODO: Worst case running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check if high and low range bounds have default values (not given)
-    # TODO: Check if list or range is so small it's already sorted (base case)
-    # TODO: Partition items in-place around a pivot and get index of pivot
-    # TODO: Sort each sublist range by recursively calling quick sort
+    # Best case running time: O(n log n) when the list is already sorted
+    # Worst case running time: O(n^2)
+    # Memory usage: O(1) In-Place algo"""
+    length = len(items)
+    if length <= 1:
+        return items
+    else:
+        pivot = items.pop()
+    left = []
+    right = []
+    for item in items:
+        if item < pivot:
+            left.append(item)
+        else:
+            right.append(item)
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+print(quick_sort([10, 5, 2, 3]))
